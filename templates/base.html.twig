@@ -1,19 +1,163 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> {% block title %}{% endblock %} - ElectroDeals</title>
+    
+    <link rel="stylesheet" href={{ asset('assets/node_modules/bootstrap/dist/css/bootstrap.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
+    <script src="https://kit.fontawesome.com/fe080625af.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href={{ asset('assets/img/icon-ed.png') }} />
+</head>
+
+<body>
+
+    <header>
+        <div id="top-header">
+                <div class="container-fluid d-flex flex-wrap px-5">
+                  <ul class="nav me-auto">
+                    <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-phone"></i>03 20 22 96 48</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-envelope-o"></i>contact@electrodeals.tech</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-map-marker"></i>Lille, France</a></li>
+                    
+                  </ul>
+                  <ul class="nav">
+                    <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-sign-in"></i>Connexion</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-user-plus"></i>Inscription</a></li>
+                  </ul>
+                </div>
+        </div>
+        
+        <div id="main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <a href="/" >
+                            <img class="img-fluid" src={{ asset('assets/img/electrodeals-logo.png') }} alt="logo">
+                        </a>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                        <div class="input-group ms-md-5">
+                            <input type="text" class="form-control input-custom-l" placeholder="Rechercher un produit...">
+                            <button class="btn-custom-r" type="button" id="button-addon2">ok</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-end d-flex align-items-center justify-content-center">
+                        <ul class="nav col-12 col-lg-auto my-2 my-md-0 text-small ">
+                            <li class="inline_block px-4 mt-3" >
+                                <a href="#">
+                                    <button class="btn position-relative pb-0">
+                                        <i class="fa-solid fa-cart-shopping text-white"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-bg-light">4</span>
+                                    </button>
+                                    <div class="text-white">Panier</div>
+                                </a>
+                               
+                            </li>
+                            <li class="inline_block px-4 mt-3">
+                                <a href="">
+                                    <button class="btn position-relative pb-0 me-2">
+                                        <i class="fa-solid fa-heart text-white"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-bg-light">9</span>
+                                    </button>
+                                    <div class="text-white">Souhaits</div>
+                                </a>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+           
+           
+        </div>
+    </header>
+
+
+    <div id="nav">
+        <nav class="container navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" href={{ path('app_home') }}>Accueil</a>
+                  <a class="nav-link" href={{ path('app_product') }}>Produits</a>
+                  <a class="nav-link" href="#">Contact</a>
+                  <a class="nav-link" href="#">Mon compte</a>
+                </div>
+              </div>
+            </div>
+        </nav>
+    </div>
+
+  
+    <div class="section-header">
+        <!-- container -->
+        <div class="container">
+            <h4 class="ms-md-5">{% block sectionTitle %}Bienvenue chez ElectroDeals{% endblock %}</h4>
+        </div>
+        <!-- /container -->
+    </div>
+
+    {% block section %}bloc section ...{% endblock %}
+   
+
+
+    <footer class="bg-my-dark text-bg-dark">
+        <div class="container">
+            <div class="py-5">
+              <div class="row">
+                <div class="col-6 col-md-4 mb-3 pe-md-2">
+                  <h5 class="mb-4">A PROPOS</h5>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2">ElectroDeals est une entreprise de vente en ligne de produits électroniques neufs et d'occasions.</li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0"><i class="fa fa-map-marker me-2"></i>Lille, France</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0"><i class="fa fa-envelope-o me-2"></i>contact@electrodeals.tech</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0 "><i class="fa fa-phone me-2"></i>03 20 22 96 48</a></li>
+                  </ul>
+                </div>
+                <div class="col-6 col-md-2 mb-3">
+                  <h5 class="mb-4">INFORMATION</h5>
+                  <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Contact</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Mon compte</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Panier</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Liste souhaits</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Mes commandes</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Politique de confidentialité</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Termes & Conditions</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link link-secondary p-0">Aide</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-4 offset-md-1 mb-3">
+                  <form>
+                    <h5 class="mb-4">NEWSLETTER</h5>
+                    <p>Inscrivez-vous à notre newsletter hebdomadaire pour recevoir toutes nos dernières offres et nouveautés.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <div class="input-group">
+                            <input type="text" class="input-custom-l" placeholder=" ...@email...">
+                            <button class="btn-custom-r" type="button" id="button-addon2">s'inscrire</button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>          
+            </div>
+        </div>
+        <div class="copyright bg-my-dark-light">
+            <p class="text-center">Copyright ©2022 Tous droits réservés | ElectroDeals</p>
+        </div>
+    </footer>
+
+
+    <script src={{ asset('assets/node_modules/@popperjs/core/dist/umd/popper.min.js') }}></script>
+    <script src={{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}></script>
+    <script src="js/script.js"></script>
+</body>
+
 </html>
