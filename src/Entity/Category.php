@@ -72,4 +72,10 @@ class Category
 
         return $this;
     }
+
+    /*methodes que j'ai ajouté pour les besoins de l'app */
+    public function __toString()
+    {
+        return ucfirst(strtolower($this->getName()));
+    }
 }
