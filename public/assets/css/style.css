@@ -21,15 +21,56 @@ body {
 .text-my-yellow {
   color: #ffbd4a !important;
 }
+.form-sm-ctr {
+  max-width: 400px;
+  margin: 0 auto 30px;
+  border: 1px solid #dededf;
+  border-radius: 4px;
+  padding: 18px;
+}
+.form-sm-ctr label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.form-sm-ctr .form-check label {
+  font-size: 13px;
+  font-weight: normal;
+}
 
+.btn-custom {
+  height: 40px;
+  font-size: 14px;
+  background: #ffbd4a;
+  color: #1E1F29;
+  padding: 0 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 40px;
+}
+.btn-custom-block {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  background: #ffbd4a;
+  color: #1E1F29;
+  font-weight: 700;
+  border: none;
+  border-radius: 40px;
+}
 .btn-custom-r {
   height: 40px;
   width: 100px;
   background: #ffbd4a;
-  color: #000;
+  color: #1E1F29;
   font-weight: 700;
   border: none;
   border-radius: 0px 40px 40px 0px;
+}
+
+.btn-custom:hover, .btn-custom-block:hover, .btn-custom-r:hover {
+  background-color: #1E1F29;
+  color: #ffbd4a;
+  border: 2px solid #ffbd4a;
 }
 
 /*TOP HEADER*/
@@ -116,11 +157,6 @@ body {
     text-decoration: underline;
   }
 
-  /* SECTION HEADER*/
-  .section-header {
-    padding: 10px 0;
-    border-bottom: 2px solid #E4E7ED;
-  }
 
   /*SECTION*/
   .section {
@@ -192,6 +228,22 @@ footer .copyright {
 
 #products .card-footer {
   margin-top: auto;
+}
+
+/* ACCOUNT */
+#account .card a{
+  text-decoration: none;
+  color: #15161D;
+}
+
+#account .card-body {
+  background-color: #ffbd4a;
+}
+
+#account .card-body:hover {
+  background-color: #1E1F29;
+  color: #ffbd4a;
+  border: 2px solid #ffbd4a;
 }
 
 

@@ -20,14 +20,22 @@
         <div id="top-header">
                 <div class="container-fluid d-flex flex-wrap px-5">
                   <ul class="nav me-auto">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item"><a href={{ path('admin') }} class="nav-link link-light px-2"><i class="fa fa-tachometer"></i>Vous êtes Administrateur - Aller au Tableau de bord ?</a></li>
+                    {% else %}
                     <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-phone"></i>03 20 22 96 48</a></li>
                     <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-envelope-o"></i>contact@electrodeals.tech</a></li>
                     <li class="nav-item"><a href="#" class="nav-link link-light px-2"><i class="fa fa-map-marker"></i>Lille, France</a></li>
-                    
+                    {% endif %}						
                   </ul>
                   <ul class="nav">
+                    {% if app.user %}
+                    <li class="nav-item"><a href={{ path('app_account') }} class="nav-link link-light px-2"><i class="fa fa-user"></i>Bonjour {{ app.user.firstname|lower }}</a></li>
+                    <li class="nav-item"><a href={{ path('app_logout') }} class="nav-link link-light px-2"><i class="fa fa-sign-out"></i>Deconnexion</a></li> 
+                    {% else %}
                     <li class="nav-item"><a href={{ path('app_login') }} class="nav-link link-light px-2"><i class="fa fa-sign-in"></i>Connexion</a></li>
                     <li class="nav-item"><a href={{ path('app_register') }} class="nav-link link-light px-2"><i class="fa fa-user-plus"></i>Inscription</a></li>
+                    {% endif %}
                   </ul>
                 </div>
         </div>
@@ -88,7 +96,7 @@
                   <a class="nav-link" href={{ path('app_home') }}>Accueil</a>
                   <a class="nav-link" href={{ path('app_product') }}>Produits</a>
                   <a class="nav-link" href="#">Contact</a>
-                  <a class="nav-link" href="#">Mon compte</a>
+                  <a class="nav-link" href={{ path('app_account') }}>Mon compte</a>
                 </div>
               </div>
             </div>
@@ -99,7 +107,7 @@
     <div class="section-header">
         <!-- container -->
         <div class="container">
-            <h4 class="ms-md-5">{% block sectionTitle %}Bienvenue chez ElectroDeals{% endblock %}</h4>
+            <h2 class="h5 ms-md-5 mt-4">{% block sectionTitle %}Bienvenue chez ElectroDeals{% endblock %}</h2>
         </div>
         <!-- /container -->
     </div>

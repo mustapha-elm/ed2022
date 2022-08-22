@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block sectionTitle %}
+    Bonjour, {{ app.user.firstname|lower }} {% if is_granted('ROLE_ADMIN') %}<br> Vous avez un compte administrateur{% endif %}
+{% endblock %}
+
+{% block section %}
+<div id="account">
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+           {% if is_granted('ROLE_ADMIN') %}
+            <div class="col">
+                <div class="card h-100">
+                <a href={{ path('admin') }}>
+                    <div class="card-body">
+                        <h4 class="card-title text-center py-4">Administrateur</h4>
+                    </div>
+                </a>
+                <div class="card-footer">
+                    <small class="text-muted">Accéder au tableau de bord.</small>
+                </div>
+                </div>
+            </div>
+           {% endif %}
+            <div class="col">
+                <div class="card h-100">
+                <a href="#">
+                    <div class="card-body">
+                        <h4 class="card-title text-center py-4">Adresses</h4>
+                    </div>
+                </a>
+                <div class="card-footer">
+                    <small class="text-muted">Gérer vos adresses de livraison.</small>
+                </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                <a href="#">
+                    <div class="card-body">
+                        <h4 class="card-title text-center py-4">Commandes</h4>
+                    </div>
+                </a>
+                <div class="card-footer">
+                    <small class="text-muted">Liste et détails de vos dernières commandes.</small>
+                </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                <a href="#">
+                    <div class="card-body">
+                        <h4 class="card-title text-center py-4">Informations</h4>
+                    </div>
+                </a>
+                <div class="card-footer">
+                    <small class="text-muted">Gérer vos informations personnelles.</small>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+{% endblock %}

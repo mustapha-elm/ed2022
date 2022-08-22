@@ -5,20 +5,28 @@
 {% block sectionTitle %} Inscription {% endblock %}
 
 {% block section %}
-   
-   <div class="container">
+<div id="register">
+    <div class="container py-4">
+    <div class="form-sm-ctr">
+    <h4 class="mb-4">Créer un compte</h4>
+    {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+        {{ form_row(registrationForm.email,
+            { label: 'Email', attr: { placeholder: 'Email' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        {{ form_row(registrationForm.firstname, 
+            { label: 'Prénom', attr: { placeholder: 'Prénom' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        {{ form_row(registrationForm.lastname,
+            { label: 'Nom', attr: { placeholder: 'Nom' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        {{ form_row(registrationForm.plainPassword.first,
+            { label: 'Mot de passe', attr: { placeholder: 'Mot de passe' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        {{ form_row(registrationForm.plainPassword.second,
+            { label: 'Répétez mot de passe', attr: { placeholder: 'Répétez mot de passe' }, row_attr: { class: 'form-floating mb-3' } }) }}    
+        <button type="submit" class="btn-custom-block mb-4">Valider</button>
+         {{ form_row(registrationForm.agreeTerms,
+            { label : 'En créant un compte, vous acceptez les conditions générales de vente sur le site ElectrDeals.tech. '}) }}
     {{ form_end(registrationForm) }}
+    </div>
+   
    </div>
-
-    
+</div>
 {% endblock %}
