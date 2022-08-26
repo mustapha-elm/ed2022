@@ -11,62 +11,38 @@
 <section id="products">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for product in products %}
             <div class="col mb-5">
                 <div class="card h-100">
-                    <a href="#">
+                    <a href={{ path('app_product_details', {'slug': product.slug}) }}>
                         <!-- Sale badge-->
-                        <div class="badge bg-dark text-my-yellow position-absolute" style="top: 0.5rem; right: 0.5rem">Neuf</div>
+                        <div class="badge bg-dark text-my-yellow position-absolute" style="top: 0.5rem; right: 0.5rem">
+                            {% if product.fresh %} neuf {% else %} occasion {% endif %}                          
+                        </div>
                         <!-- Product image-->
-                        <img class="card-img-top" src={{ asset('assets/img/usb.png') }} alt="..." />
+                        <img class="card-img-top" src='/uploads/{{ product.picture }}'  alt="image produit" />
                         <!-- Product details-->
                         <div class="card-body p-4 pt-2 mt-auto">
-                                <h6 class="card-subtitle mb-2 text-muted text-center">INFORMATIQUE</h6>
-                                <!-- Product name-->
-                                <h5 class="text-uppercase card-title text-center">Cable hdmi</h5>
-                                <!-- Product reviews-->
-                                <p class="card-text">Cable hdmi de haute qualité. Longueur: 2mètre</p>
-                                <!-- Product price-->
-                                <div class="d-flex justify-content-center">
-                                    <span class="card-price">20.00 €</span>
-                                </div>
+                            <h6 class="card-subtitle mb-2 text-muted text-center text-uppercase">{{ product.category }}</h6>
+                            <!-- Product name-->
+                            <h5 class="text-uppercase card-title text-center">{{ product.name }}</h5>
+                            <!-- Product reviews-->
+                            <p class="card-text">{{ product.subtitle }}</p>
+                            <!-- Product price-->
+                            <div class="d-flex justify-content-center">
+                                <span class="card-price">{{ (product.price / 100)|number_format(2 , ',', '.')}} €</span>
+                            </div>
                         </div>
                     </a>
                     <!-- Product actions-->
                     <div class="card-footer p-4 d-flex justify-content-around">
                         <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
                         <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter à ma liste" class="link-secondary p-2"><i class="fa-solid fa-heart-circle-plus"></i></a></div>
-                        <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
+                        <div><a href={{ path('app_product_details', {'slug': product.slug}) }} data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
                     </div>
+                </div>
             </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <a href="#">
-                        <!-- Sale badge-->
-                        <div class="badge bg-dark text-my-yellow position-absolute" style="top: 0.5rem; right: 0.5rem">Occasion</div>
-                        <!-- Product image-->
-                        <img class="card-img-top img-fluid" src={{ asset('assets/img/hdmi300.jpg') }} alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4 pt-2">
-                                <h6 class="card-subtitle mb-2 text-muted text-center">ACCESSOIRES</h6>
-                                <!-- Product name-->
-                                <h5 class="text-uppercase card-title text-center">Cable usb type-c</h5>
-                                <!-- Product reviews-->
-                                <p class="card-text">Cable usb de maintenance</p>
-                                <!-- Product price-->
-                                <div class="d-flex justify-content-center">
-                                    <span class="card-price">7.95 €</span>
-                                </div>
-                        </div>
-                    </a>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 d-flex justify-content-around">
-                        <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
-                        <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter à ma liste" class="link-secondary p-2"><i class="fa-solid fa-heart-circle-plus"></i></a></div>
-                        <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
-                    </div>
-            </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

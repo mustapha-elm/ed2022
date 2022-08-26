@@ -6,6 +6,8 @@ body {
     font-size: 16px;
 }
 
+/* GLOBAL */
+
 .bg-my-yellow {
   background-color: #ffbd4a !important;
 }
@@ -71,6 +73,15 @@ body {
   background-color: #1E1F29;
   color: #ffbd4a;
   border: 2px solid #ffbd4a;
+}
+
+.card-price{
+  font-size: 17px;
+  color: #1E1F29;
+  font-weight: 800;
+  background-color: #ffbd4a;
+  padding: 5px 13px;
+  border-radius: 15px;
 }
 
 /*TOP HEADER*/
@@ -210,14 +221,7 @@ footer .copyright {
   font-weight: 500;
 }
 
-#products .card .card-price{
-  font-size: 17px;
-  color: #1E1F29;
-  font-weight: 800;
-  background-color: #ffbd4a;
-  padding: 2px 10px;
-  border-radius: 20px;
-}
+
 
 
 #products .card-footer a:hover {
@@ -243,7 +247,6 @@ footer .copyright {
 #account .card-body:hover {
   background-color: #1E1F29;
   color: #ffbd4a;
-  border: 2px solid #ffbd4a;
 }
 
 

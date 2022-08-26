@@ -2,17 +2,38 @@
 
 namespace App\Controller;
 
-use App\Service\MailjetService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Product;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/produits', name: 'app_product')]
-    public function index(MailjetService $mjs): Response
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        //$mjs->send('zemou59@hotmail.fr', 'mous', '1er ail de test', 'test de contenu <h2> avec titre de test </h2> en html', 'text simple !!!!!');
-        return $this->render('product/index.html.twig');
+        $this->em = $em;
+    }
+
+    #[Route('/produits', name: 'app_product')]
+    public function index(): Response
+    {
+        $products = $this->em->getRepository(Product::class)->findAll();
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products
+        ]);
+    }
+
+    #[Route('/produits/{slug}', name: 'app_product_details')]
+    public function details($slug): Response
+    {
+        $product = $this->em->getRepository(Product::class)->findOneBy(['slug' => $slug]);
+    
+        return $this->render('product/details.html.twig', [
+            'product' => $product
+        ]);
     }
 }
