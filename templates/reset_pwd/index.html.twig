@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialiser mot de passe{% endblock %}
+
+{% block sectionTitle %} Mot de passe oublié ? {% endblock %}
+
+{% block section %}
+<div id="reset-pwd">
+    <div class="container py-4">
+    <div class="form-sm-ctr">
+    {% if alert %}
+    <div class="alert {{ alert.bgColor }} alert-dismissible fade show text-small" role="alert">
+        <small><strong>{{ alert.type }}</strong> {{ alert.message }}</small>               
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h4 class="mb-4">Saisir votre adresse email</h4>
+    <p>Un email vous sera envoyé avec un lien afin de réinitialiser votre mot de passe</p>
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_row(form.email,
+            { label: 'Email', attr: { placeholder: 'Email' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        <button type="submit" class="btn-custom-block mb-4">Valider</button>
+    {{ form_end(form) }}
+    </div>
+   
+   </div>
+</div>
+{% endblock %}

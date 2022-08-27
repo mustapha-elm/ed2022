@@ -27,6 +27,9 @@
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" autocomplete="current-password" required>
                 <label for="inputPassword">Mot de passe</label>
             </div>
+            <div class="text-center">
+                <small><a href={{ path('app_demand_reset_pwd') }}>Mot de passe oublié ?</a></small>
+            </div>
            
            
            
@@ -52,8 +55,10 @@
             </button>
 
             <hr>
-
-            <a class="nav-link text-center" href={{ path('app_register') }}>Où créer un comte ElectrDeals</a>
+            <div class="text-center">
+                <a class="link-custom" href={{ path('app_register') }}>Où créer un comte ElectrDeals</a>
+            </div>
+            
 
         </form>
     </div>

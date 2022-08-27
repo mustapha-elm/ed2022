@@ -39,7 +39,7 @@ class MailjetService {
         ];
         $response = $this->mj->post(Resources::$Email, ['body' => $body]);
         $response->success();
-        dd($response->getData());
+        //dd($response->getData());
     }
 
     public function sendWelcome(string $toEmail, string $toName) {

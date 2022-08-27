@@ -84,6 +84,25 @@ body {
   border-radius: 15px;
 }
 
+.link-custom {
+  text-decoration: none;
+  color: #333;
+  border: 0.5px solid #B9BABC;
+  border-radius: 20px;
+  padding: 1px 7px;
+  background-color: #ecedef;
+}
+.link-custom:hover {
+  color: #ffbd4a;
+  background-color: #333;
+}
+
+
+/* FIN GLOBAL */
+
+
+
+
 /*TOP HEADER*/
 #top-header {
     padding-top: 4px;
