@@ -5,6 +5,14 @@
 {% block section %}
 <div class="container py-4">
     <div class="form-sm-ctr">
+
+       {% if alert %}
+        <div class="alert {{ alert.bgColor }} alert-dismissible fade show text-small" role="alert">
+            <small><strong>{{ alert.type }}</strong> {{ alert.message }}</small>               
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -15,8 +23,6 @@
                     You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
-
-            
 
             <h4 class="mb-4">S'identifier</h4>
             <div class="form-floating mb-3">
@@ -30,10 +36,6 @@
             <div class="text-center">
                 <small><a href={{ path('app_demand_reset_pwd') }}>Mot de passe oublié ?</a></small>
             </div>
-           
-           
-           
-           
 
             <input type="hidden" name="_csrf_token"
                 value="{{ csrf_token('authenticate') }}"
@@ -50,13 +52,13 @@
                 </div>
             #}
 
-            <button class="btn-custom-block my-3" type="submit">
+            <button class="btn-custom-block mb-3 mt-3" type="submit">
                 Se connecter
             </button>
 
             <hr>
             <div class="text-center">
-                <a class="link-custom" href={{ path('app_register') }}>Où créer un comte ElectrDeals</a>
+                <a class="link-custom-block" href={{ path('app_register') }}>Où créer un compte ElectrDeals</a>
             </div>
             
 

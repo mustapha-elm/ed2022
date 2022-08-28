@@ -5,7 +5,26 @@
 {% block sectionTitle %} Réinitialiser mot de passe {% endblock %}
 
 {% block section %}
-    <div class="container">
-        <h2>ici form de réinitilaisation</h2>
+<div id="reset-pwd">
+    <div class="container py-4">
+    <div class="form-sm-ctr">
+    {% if alert %}
+    <div class="alert {{ alert.bgColor }} alert-dismissible fade show text-small" role="alert">
+        <small><strong>{{ alert.type }}</strong> {{ alert.message }}</small>               
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    {% endif %}
+    <h4 class="mb-4">Nouveau mot de passe</h4>
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_row(form.plainPassword.first,
+            { label: 'Nouveau mot de passe', attr: { placeholder: 'Nouveau mot de passe' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        {{ form_row(form.plainPassword.second,
+            { label: 'Répétez mot de passe', attr: { placeholder: 'Répétez mot de passe' }, row_attr: { class: 'form-floating mb-3' } }) }}
+        <button type="submit" class="btn-custom-block mb-4">Valider</button>
+    {{ form_end(form) }}
+    </div>
+   
+   </div>
+</div>
 {% endblock %}
