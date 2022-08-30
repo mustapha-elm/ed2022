@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle adresse{% endblock %}
+
+{% block sectionTitle %}
+    {{ formTitle }}
+{% endblock %}
+
+{% block btnBack %}{% endblock %}
+
+{% block section %}
+<div id="address-form">
+    <div class="container py-4">
+        <div class="form-sm-ctr">
+            {% form_theme form 'bootstrap_5_layout.html.twig' %}
+            {{ form_start(form) }}
+                {{ form_row(form.name,
+                    { label: 'Nommez votre adresse', attr: { placeholder: 'Nommez votre adresse' }, row_attr: { class: 'form-floating mb-3' } }) }}
+                {{ form_row(form.receiver, 
+                    { label: 'Nom et Prénom', attr: { placeholder: 'Nom et Prénom' }, row_attr: { class: 'form-floating mb-3' } }) }}
+                {{ form_row(form.street,
+                    { label: 'Adresse', attr: { placeholder: 'Adresse' }, row_attr: { class: 'form-floating mb-3' } }) }}
+                {{ form_row(form.complement,
+                    { label: 'Complément', attr: { placeholder: 'Complément' }, row_attr: { class: 'form-floating mb-3' } }) }}
+                {{ form_row(form.cp,
+                    { label: 'Code postal', attr: { placeholder: 'Code postal' }, row_attr: { class: 'form-floating mb-3' } }) }}    
+                {{ form_row(form.city,
+                    { label: 'Ville', attr: { placeholder: 'Ville' }, row_attr: { class: 'form-floating mb-3' } }) }}    
+                {{ form_row(form.country,
+                    { label: 'Pays', attr: { placeholder: 'Pays' }, row_attr: { class: 'form-floating mb-3' } }) }}    
+                <button type="submit" class="btn-custom-block mb-4">Valider</button>
+            {{ form_end(form) }}
+        </div>
+   </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses{% endblock %}
+
+{% block sectionTitle %}Mes adresses{% endblock %}
+
+{% block btnBack %}{% endblock %}
+
+{% block section %}
+    <div class="container p-md-4">
+
+        <div class="mb-4">
+            <a href={{ path('app_add_address') }}><button class="btn-custom">Ajouter une nouvelle adresse</button></a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {% if app.user.addresses|length < 1 %}
+                <h4>Vous n'avez pas encore ajouter d'adresse.</h4>
+            {% else %}
+                {% for address in app.user.addresses %}
+                <div class="col">
+                    <div class="card h-100">
+                    <div class="card-header text-center text-uppercase">{{ address.name }}</div>
+                    <div class="card-body">
+                        <h6 class="card-title fw-bolder">{{ address.receiver }}</h6>
+                        <p class="card-text">
+                            {{ address.street }} <br>
+                            {% if address.complement %} {{ address.complement }} <br> {% endif %} 
+                            {{ address.cp }} {{ address.city }} - {{ address.country }}
+                        </p>
+                        <div>
+                            <small>
+                                <a class="link-custom" href={{ path('app_update_address', {'id': address.id}) }}>modifier</a> | 
+                                <a class="link-custom" href={{ path('app_delete_address', {'id': address.id}) }}>supprimer</a>
+                            </small>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
