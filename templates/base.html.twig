@@ -16,6 +16,7 @@
 
 <body>
 
+
     <header>
         <div id="top-header">
                 <div class="container-fluid d-flex flex-wrap px-5">
@@ -49,38 +50,33 @@
                         </a>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
-                        <div class="input-group ms-md-5">
+                        <div class="input-group mx-4 ms-md-5">
                             <input type="text" class="form-control input-custom-l" placeholder="Rechercher un produit...">
                             <button class="btn-custom-r" type="button" id="button-addon2">ok</button>
                         </div>
                     </div>
-                    <div class="col-md-3 text-end d-flex align-items-center justify-content-center">
-                        <ul class="nav col-12 col-lg-auto my-2 my-md-0 text-small ">
-                            <li class="inline_block px-4 mt-3" >
-                                <a href="#">
-                                    <button class="btn position-relative pb-0">
-                                        <i class="fa-solid fa-cart-shopping text-white"></i>
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-bg-light">4</span>
-                                    </button>
-                                    <div class="text-white">Panier</div>
-                                </a>
-                               
-                            </li>
-                            <li class="inline_block px-4 mt-3">
-                                <a href="">
-                                    <button class="btn position-relative pb-0 me-2">
-                                        <i class="fa-solid fa-heart text-white"></i>
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-bg-light">9</span>
-                                    </button>
-                                    <div class="text-white">Souhaits</div>
-                                </a>
-                            </li>
-                          </ul>
+                    <div class="col-md-3 d-flex justify-content-center align-items-end">
+                      <a href="">
+                           <button type="button" class="bg-my-dark text-white position-relative p-2 mx-4 my-4 my-md-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Panier">
+                          <i class="fa fa-shopping-cart"></i>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-dark">
+                            9
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </button>
+                      </a>
+                      <a href="">
+                           <button type="button" class="bg-my-dark text-white position-relative p-2 mx-3 my-4 my-md-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Lise des souhaits">
+                          <i class="fa fa-heart"></i>
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-dark">
+                            9
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </button>
+                      </a>
                     </div>
                 </div>
             </div>
-           
-           
         </div>
     </header>
 
@@ -114,6 +110,8 @@
         </div>
         <!-- /container -->
     </div>
+
+
 
     {% block section %}bloc section ...{% endblock %}
    
