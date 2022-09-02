@@ -50,10 +50,12 @@
                         </a>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
-                        <div class="input-group mx-4 ms-md-5">
-                            <input type="text" class="form-control input-custom-l" placeholder="Rechercher un produit...">
-                            <button class="btn-custom-r" type="button" id="button-addon2">ok</button>
-                        </div>
+                    <form method="GET" action={{ path('app_product') }}>
+                      <div class="input-group mx-4 ms-md-5">
+                        <input type="text" name="search-product" class="form-control input-custom-l" placeholder="Rechercher un produit...">
+                        <button class="btn-custom-r" type="submit" name="btn-search" value="valider">ok</button>
+                      </div>
+                    </form>
                     </div>
                     <div class="col-md-3 d-flex justify-content-center align-items-end">
                       <a href="">

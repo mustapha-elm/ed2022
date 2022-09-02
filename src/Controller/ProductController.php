@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
@@ -18,9 +19,15 @@ class ProductController extends AbstractController
     }
 
     #[Route('/produits', name: 'app_product')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $products = $this->em->getRepository(Product::class)->findAll();
+        
+        if ($request->get('btn-search')) {
+            $products = $this->em->getRepository(Product::class)->findWithSearch($request->get('search-product'));
+        }
+
+        
 
         return $this->render('product/index.html.twig', [
             'products' => $products
