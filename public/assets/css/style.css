@@ -230,6 +230,11 @@ footer .copyright {
 }
 
 /*  PRODUCTS */
+#products .card {
+  min-width: 240px;
+  max-width: 300px;
+}
+
 #products .card a{
   text-decoration: none;
 }
@@ -252,6 +257,12 @@ footer .copyright {
   font-size: 14px;
   color: #15161D;
   font-weight: 500;
+}
+
+#filter-bar {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #B9BABC;
 }
 
 
