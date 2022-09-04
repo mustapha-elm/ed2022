@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Classe\ProductFilter;
+use App\Entity\Category;
 use App\Form\ProductFilterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,11 @@ class ProductController extends AbstractController
 
         $formFiltre->handleRequest($request);
 
-        if ($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+        if ($formFiltre->isSubmitted() && $formFiltre->isValid()) {      
+            if (!$productFilter->getCategories()) {
+                $allCategories = $this->em->getRepository(Category::class)->findAll();
+                $productFilter->setCategories($allCategories);
+            }    
            $products = $this->em->getRepository(Product::class)->findWithFilter($productFilter);
         }
 
