@@ -18,9 +18,9 @@ class ProductFilter {
     private $prices;
 
      /**
-     * @var bool
+     * @var int[]
      */
-    private $fresh;
+    private $statements;
 
     public function __construct($categories = [], $prices = [], $fresh = null)
     {
@@ -47,12 +47,17 @@ class ProductFilter {
         return $this;
     }
 
-    public function isFresh() :bool {
-        return $this->fresh;
+    public function getStatement()  {
+        return $this->statements;
     }
 
-    public function setFresh(bool $fresh): self {
-        $this->fresh = $fresh;
+    public function setStatement(int $statement): self {
+        $this->statements[] = $statement;
+        return $this;
+    }
+
+    public function addAllStatements() {
+        $this->statements = [1, 2];
         return $this;
     }
     

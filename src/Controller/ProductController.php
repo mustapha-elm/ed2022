@@ -42,7 +42,10 @@ class ProductController extends AbstractController
             if (!$productFilter->getCategories()) {
                 $allCategories = $this->em->getRepository(Category::class)->findAll();
                 $productFilter->setCategories($allCategories);
-            }    
+            }  
+            if (!$productFilter->getStatement()) {
+                $productFilter->addAllStatements();
+            } 
            $products = $this->em->getRepository(Product::class)->findWithFilter($productFilter);
         }
 

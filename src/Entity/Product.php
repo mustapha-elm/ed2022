@@ -42,6 +42,9 @@ class Product
     #[ORM\Column]
     private ?bool $best = null;
 
+    #[ORM\Column]
+    private ?int $statement = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +154,18 @@ class Product
     public function setBest(bool $best): self
     {
         $this->best = $best;
+
+        return $this;
+    }
+
+    public function getStatement(): ?int
+    {
+        return $this->statement;
+    }
+
+    public function setStatement(int $statement): self
+    {
+        $this->statement = $statement;
 
         return $this;
     }

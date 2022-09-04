@@ -33,14 +33,15 @@ class ProductFilterType extends AbstractType
             'multiple' => true,
             'required' => false
         ])
-        ->add('fresh', ChoiceType::class, [
+        ->add('statement', ChoiceType::class, [
             'choices' => [
-                'Les 2' => null,
+                'Tout' => null,
                 'Neuf' => 1,
-                'Occasion' => 0           
+                'Occasion' => 2           
             ],
-            'expanded' => true,
             'preferred_choices' => [null],
+            'expanded' => true
+            
             
         ])
         ;

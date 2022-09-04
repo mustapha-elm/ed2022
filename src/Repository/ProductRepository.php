@@ -106,7 +106,7 @@ class ProductRepository extends ServiceEntityRepository
             ->join('p.category', 'c')
             ->where('c.id IN (:categories)')
             ->andWhere('p.price BETWEEN :min1 AND :max1 OR p.price BETWEEN :min2 AND :max2 OR p.price BETWEEN :min3 AND :max3')
-            ->andWhere('p.fresh = :isFresh')
+            ->andWhere('p.statement IN (:statement)')
             ->setParameter('categories', $productFilter->getCategories())
             ->setParameter('min1', 0)
             ->setParameter('max1', $priceLevels['max1'])
@@ -114,7 +114,7 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('max2', $priceLevels['max2'])
             ->setParameter('min3', $priceLevels['min3'])
             ->setParameter('max3', $priceLevels['max3'])
-            ->setParameter('isFresh', $productFilter->isFresh())
+            ->setParameter('statement', $productFilter->getStatement())         
            ->getQuery()
            ->getResult()
         ;
