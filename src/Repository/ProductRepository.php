@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classe\ProductFilter;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -74,6 +75,57 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('val', "%{$value}%")
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+       /**
+     * @return Product[] Returns an array of Product objects
+     */
+    public function findWithFilter(ProductFilter $productFilter): array
+    {
+        $values = [
+            'min1' => 0,
+            'max1'=>1000,
+            'min2'=>1000,
+            'max2'=>5000,
+            'min3'=>5000,
+            'max3'=>10000000,
+            ];
+        if ($productFilter->getPrices()) {
+            $values = [
+                'min1' => 0,
+                'max1'=>0,
+                'min2'=>0,
+                'max2'=>0,
+                'min3'=>0,
+                'max3'=>0,
+                ];
+            foreach ($productFilter->getPrices() as  $val) {
+                if ($val == 1) {
+                    $values['max1'] = 1000;
+                }
+                if($val == 2) {
+                    $values['min2'] = 1000;
+                    $values['max2'] = 5000;
+                }
+                if($val == 3) {
+                    $values['min3'] = 5000;
+                    $values['max3'] = 10000000;
+                }
+            }
+        }
+        return $this->createQueryBuilder('p')
+            ->orWhere('p.price BETWEEN :min1 AND :max1')
+            ->orWhere('p.price BETWEEN :min2 AND :max2')
+            ->orWhere('p.price BETWEEN :min3 AND :max3')
+            ->setParameter('min1', 0)
+            ->setParameter('max1', $values['max1'])
+            ->setParameter('min2', $values['min2'])
+            ->setParameter('max2', $values['max2'])
+            ->setParameter('min3', $values['min3'])
+            ->setParameter('max3', $values['max3'])
+           ->getQuery()
+           ->getResult()
         ;
     }
 }

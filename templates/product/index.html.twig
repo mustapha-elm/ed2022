@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    Nos produits 
-{% endblock %}
+{% block title %}Nos produits {% endblock %}
 
 {% block sectionTitle %}Nos produits{% endblock %}
 
@@ -12,67 +10,65 @@
     <!-- SECTION -->
 <section id="products">
     <div class="container-fluid mt-5">
-        
+
         {% if products == null %}
-            <h2 class="mb-md-5">Aucun produit trouvé</h2>
+        <h2 class="mb-md-5">Aucun produit trouvé</h2>
         {% else %}
-            <div class="d-md-flex">
-                <div id="filter-bar">
-                    <h3>Filtrer</h3>
-                    {% form_theme formFiltre 'bootstrap_5_layout.html.twig' %}
-                    {{ form_start(formFiltre) }}
-                     {{ form_row(formFiltre.categories, { label: 'Catégories'}) }}
-                     {{ form_row(formFiltre.prices, {label: 'Prix'}) }}
-                     {{ form_row(formFiltre.fresh, {label: 'Etat'}) }}
-                     <button type="submit" class="btn-custom mb-4 text-center">Valider</button>
-                    {{ form_end(formFiltre) }}
-                </div>
-                <div id="products-list">
 
-
-                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4 justify-content-center px-5">
-                        {% for product in products %}
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <a href={{ path('app_product_details', {'slug': product.slug}) }}>
-                                    <!-- Sale badge-->
-                                    <div class="badge bg-dark text-my-yellow position-absolute" style="top: 0.5rem; right: 0.5rem">
-                                        {% if product.fresh %} neuf {% else %} occasion {% endif %}                          
-                                    </div>
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src='/uploads/{{ product.picture }}'  alt="image produit" />
-                                    <!-- Product details-->
-                                    <div class="card-body p-4 pt-2 mt-auto">
-                                        <h6 class="card-subtitle mb-2 text-muted text-center text-uppercase">{{ product.category }}</h6>
-                                        <!-- Product name-->
-                                        <h5 class="text-uppercase card-title text-center">{{ product.name }}</h5>
-                                        <!-- Product reviews-->
-                                        <p class="card-text">{{ product.subtitle }}</p>
-                                        <!-- Product price-->
-                                        <div class="d-flex justify-content-center">
-                                            <span class="card-price">{{ (product.price / 100)|number_format(2 , ',', '.')}} €</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- Product actions-->
-                                <div class="card-footer p-4 d-flex justify-content-around">
-                                    <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
-                                    <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter à ma liste" class="link-secondary p-2"><i class="fa-solid fa-heart-circle-plus"></i></a></div>
-                                    <div><a href={{ path('app_product_details', {'slug': product.slug}) }} data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
+        <div class="d-sm-flex">
+            <div id="filter-bar" class="mb-2">
+                <h3>Filtrer</h3>
+                {% form_theme formFiltre 'bootstrap_5_layout.html.twig' %}
+                {{ form_start(formFiltre) }}
+                    {{ form_row(formFiltre.categories, { label: 'Catégories'}) }}
+                    {{ form_row(formFiltre.prices, {label: 'Prix'}) }}
+                    {{ form_row(formFiltre.fresh, {label: 'Etat'}) }}
+                    <button type="submit" class="btn-custom mb-4 text-center">Valider</button>
+                {{ form_end(formFiltre) }}
+            </div>
+            <div id="products-list" class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 justify-content-center">
+                    {% for product in products %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <a href={{ path('app_product_details', {'slug': product.slug}) }}>
+                                <!-- Sale badge-->
+                                <div class="badge bg-dark text-my-yellow position-absolute" style="top: 0.5rem; right: 0.5rem">
+                                    {% if product.fresh %} neuf {% else %} occasion {% endif %}                          
                                 </div>
+                                <!-- Product image-->
+                                <img class="card-img-top" src='/uploads/{{ product.picture }}'  alt="image produit" />
+                                <!-- Product details-->
+                                <div class="card-body p-4 pt-2 mt-auto">
+                                    <h6 class="card-subtitle mb-2 text-muted text-center text-uppercase">{{ product.category }}</h6>
+                                    <!-- Product name-->
+                                    <h5 class="text-uppercase card-title text-center">{{ product.name }}</h5>
+                                    <!-- Product reviews-->
+                                    <p class="card-text">{{ product.subtitle }}</p>
+                                    <!-- Product price-->
+                                    <div class="d-flex justify-content-center">
+                                        <span class="card-price">{{ (product.price / 100)|number_format(2 , ',', '.')}} €</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 d-flex justify-content-around">
+                                <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
+                                <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter à ma liste" class="link-secondary p-2"><i class="fa-solid fa-heart-circle-plus"></i></a></div>
+                                <div><a href={{ path('app_product_details', {'slug': product.slug}) }} data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
-
-                
+                    {% endfor %}
                 </div>
-            </div>
 
+            
+            </div>
+        </div>
             
         {% endif %}
        
-    </div>
+    </div><!-- /fin container fluid -->
 </section>
 <!-- /SECTION -->
 {% endblock %}

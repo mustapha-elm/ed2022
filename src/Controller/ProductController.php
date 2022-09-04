@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Classe\ProductFilter;
+use App\Form\ProductFilterType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
@@ -21,16 +23,29 @@ class ProductController extends AbstractController
     #[Route('/produits', name: 'app_product')]
     public function index(Request $request): Response
     {
+        
+       
+
         $products = $this->em->getRepository(Product::class)->findAll();
         
         if ($request->get('btn-search')) {
             $products = $this->em->getRepository(Product::class)->findWithSearch($request->get('search-product'));
         }
 
+        $productFilter = new ProductFilter();
+        $formFiltre = $this->createForm(ProductFilterType::class, $productFilter);
+
+        $formFiltre->handleRequest($request);
+
+        if ($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+           $products = $this->em->getRepository(Product::class)->findWithFilter($productFilter);
+        }
+
         
 
         return $this->render('product/index.html.twig', [
-            'products' => $products
+            'products' => $products,
+            'formFiltre' => $formFiltre->createView()
         ]);
     }
 

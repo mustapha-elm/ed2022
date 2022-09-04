@@ -231,8 +231,7 @@ footer .copyright {
 
 /*  PRODUCTS */
 #products .card {
-  min-width: 240px;
-  max-width: 300px;
+  max-width: 270px;
 }
 
 #products .card a{
