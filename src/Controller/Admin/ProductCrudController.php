@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -37,7 +38,7 @@ class ProductCrudController extends AbstractCrudController
             MoneyField::new('price')->setCurrency('EUR')->setLabel('Prix'),
             AssociationField::new('category')->setLabel('Catégories'),
             BooleanField::new('best')->setLabel('Top Produit ?'),
-            BooleanField::new('fresh')->setLabel('Neuf ?'),
+            IntegerField::new('statement')->setLabel('Etat'),
         ];
     }
     

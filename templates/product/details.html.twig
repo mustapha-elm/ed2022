@@ -20,7 +20,7 @@
             </div>
             <div class="d-flex align-items-center my-3">
                 <span class="fs-1 fw-bolder ">{{ (product.price / 100)|number_format(2 , ',', '.')}} €</span>
-                 <span class="fw-bolder ms-5">{% if product.fresh %} NEUF {% else %} OCCASION {% endif %}</span>
+                 <span class="fw-bolder ms-5">{% if product.statement == 1 %} NEUF {% else %} OCCASION {% endif %}</span>
             </div>
             <div>
                 <h4> {{  product.subtitle }} </h4>

@@ -37,9 +37,6 @@ class Product
     private ?float $price = null;
 
     #[ORM\Column]
-    private ?bool $fresh = null;
-
-    #[ORM\Column]
     private ?bool $best = null;
 
     #[ORM\Column]
@@ -130,18 +127,6 @@ class Product
     public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function isFresh(): ?bool
-    {
-        return $this->fresh;
-    }
-
-    public function setFresh(bool $fresh): self
-    {
-        $this->fresh = $fresh;
 
         return $this;
     }

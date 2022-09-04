@@ -21,23 +21,14 @@ class ProductController extends AbstractController
         $this->em = $em;
     }
 
+
     #[Route('/produits', name: 'app_product')]
     public function index(Request $request): Response
-    {
-        
-       
-
-        $products = $this->em->getRepository(Product::class)->findAll();
-        
-        if ($request->get('btn-search')) {
-            $products = $this->em->getRepository(Product::class)->findWithSearch($request->get('search-product'));
-        }
-
+    {   
         $productFilter = new ProductFilter();
         $formFiltre = $this->createForm(ProductFilterType::class, $productFilter);
-
         $formFiltre->handleRequest($request);
-
+        // gestion du filtre produits :
         if ($formFiltre->isSubmitted() && $formFiltre->isValid()) {      
             if (!$productFilter->getCategories()) {
                 $allCategories = $this->em->getRepository(Category::class)->findAll();
@@ -47,15 +38,21 @@ class ProductController extends AbstractController
                 $productFilter->addAllStatements();
             } 
            $products = $this->em->getRepository(Product::class)->findWithFilter($productFilter);
-        }
-
-        
+        // gestion de la zone de rechercher un produit
+        } elseif ($request->get('btn-search')) {
+            $products = $this->em->getRepository(Product::class)->findWithSearch($request->get('search-product'));
+        // sinon on affiche tous les produits
+        } else {
+            $products = $this->em->getRepository(Product::class)->findAll();
+        }      
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
             'formFiltre' => $formFiltre->createView()
         ]);
     }
+
+
 
     #[Route('/produits/{slug}', name: 'app_product_details')]
     public function details($slug): Response
