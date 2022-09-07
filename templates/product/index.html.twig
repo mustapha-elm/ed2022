@@ -53,7 +53,7 @@
                             </a>
                             <!-- Product actions-->
                             <div class="card-footer p-4 d-flex justify-content-around">
-                                <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
+                                <div><a href={{ path('app_cart_add', {'id': product.id}) }} data-bs-toggle="tooltip" data-bs-title="Ajouter au panier" class="link-secondary p-2"><i class="fa-solid fa-cart-arrow-down"></i></a></div>
                                 <div><a href="#" data-bs-toggle="tooltip" data-bs-title="Ajouter à ma liste" class="link-secondary p-2"><i class="fa-solid fa-heart-circle-plus"></i></a></div>
                                 <div><a href={{ path('app_product_details', {'slug': product.slug}) }} data-bs-toggle="tooltip" data-bs-title="Détails du produit" class="link-secondary p-2"><i class="fa-solid fa-circle-info"></i></a></div>
                             </div>

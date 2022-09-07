@@ -58,11 +58,11 @@
                     </form>
                     </div>
                     <div class="col-md-3 d-flex justify-content-center align-items-end">
-                      <a href="">
+                      <a href={{ path('app_cart') }}>
                            <button type="button" class="bg-my-dark text-white position-relative p-2 mx-4 my-4 my-md-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Panier">
                           <i class="fa fa-shopping-cart"></i>
                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-my-yellow text-dark">
-                            9
+                            {{ app.session.get('cart') |length }}
                             <span class="visually-hidden">unread messages</span>
                           </span>
                         </button>

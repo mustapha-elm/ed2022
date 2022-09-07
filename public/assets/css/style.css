@@ -110,6 +110,17 @@ body {
   color: #ffbd4a;
   background-color: #333;
 }
+.link-custom-simple {
+  text-decoration: none;
+  color: #333;
+}
+.link-custom-simple:hover {
+  color: #ffbd4a;
+  background-color: #333;
+  text-decoration: underline;
+  
+  
+}
 
 
 /* FIN GLOBAL */
@@ -290,6 +301,22 @@ footer .copyright {
 #account .card-body:hover {
   background-color: #1E1F29;
   color: #ffbd4a;
+}
+
+
+/* CART */
+#cart td {
+  min-width: 150px;
+}
+
+#cart table img {
+  width: 180px;
+  padding: 10px;
+}
+
+.cart-td-product a {
+  color: #1E1F29;
+  text-decoration: none;
 }
 
 

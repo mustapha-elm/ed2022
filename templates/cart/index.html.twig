@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Panier
+{% endblock %}
+
+{% block sectionTitle %} Mon panier {% endblock %}
+
+{% block btnBack %}{% endblock %}
+
+{% block section %}
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container p-4">
+        <div id="cart">
+        
+        {% if cart|length > 0 %}
+		<a href={{ path('app_product') }} class="link-custom">Ajouter d'autres articles</a>
+
+
+		<table class="table table-responsive align-middle">
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col"></th>
+					<th scope="col"  class="text-center">Quantité</th>
+					<th scope="col" class="text-center">Prix unitaire</th>
+					<th scope="col" class="text-center">Total</th>	
+				</tr>
+			</thead>
+			<tbody>
+				{% set totalAmount = 0 %}
+				{% for itemCart in cart %}
+				<tr>
+					<td class="text-center">
+						<img class="img-fluid" src="/uploads/{{itemCart.product.picture}}" alt="/uploads/{{itemCart.product.picture}}">
+					</td>
+					<td class="cart-td-product">
+						<a href={{ path('app_product_details', { 'slug': itemCart.product.slug }) }}>
+                            <h5 class="text-uppercase">{{ itemCart.product.name }}</h5>
+                            <p>{{itemCart.product.subtitle}} <br> {% if itemCart.product.statement == 1 %}neuf{% else %}occasion{% endif %}</p>
+                        </a>
+						<p><small>
+                            <a href={{ path('app_cart_delete_one', { 'id': itemCart.product.id }) }} class="link-custom-simple">supprimer</a> | 
+                            <a href="#" class="link-custom-simple">ajouter à ma liste souhaits</a>
+                        </small></p>
+					</td>
+					<td class="text-center">
+						<div class="d-flex align-items-center justify-content-center px-3">
+                            <div class="mx-2"><a href={{ path('app_cart_decrease', { 'id': itemCart.product.id }) }}> <i class="fa-solid fa-circle-minus text-secondary"></i> </a></div>
+							<div class="fs-md-5">{{itemCart.qte}}</div>		
+                            <div class="mx-2"><a href={{ path('app_cart_add', { 'id': itemCart.product.id }) }}> <i class="fa-solid fa-circle-plus text-secondary" ></i> </a></div>	
+						</div>
+					</td>
+					<td class="text-end">
+                        <div class="fs-md-5 px-md-3">{{ (itemCart.product.price /100) | number_format(2, ',', '.') }} €</div>
+                    </td>
+					<td  class="text-end">
+                        <div class="fs-md-5 px-md-3">{{ (((itemCart.product.price) * (itemCart.qte)) /100) | number_format(2, ',', '.') }} €</div>
+                    </td>			
+				</tr>
+				{% set totalAmount = totalAmount + ((itemCart.product.price) * (itemCart.qte)) %}
+				{% endfor %}
+			</tbody>
+		</table>
+		<div>
+			<h4 class="text-end">Sous-total ({{ cart |length }} articles): {{ (totalAmount /100) | number_format(2, ',', '.') }} € </h4>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<a href='#'><button type="submit" class="btn-custom-block">Passer la commande</button></a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		<h3>Votre panier est vide.</h3>
+		<a href={{ path('app_product') }} class="link-custom-simple">aller à la page des produits et ajouter au panier</a>
+		{% endif %}
+        
+        
+        </div>
+		
+	</div>
+	<!-- /container -->
+</div>
+<!-- / SECTION -->
+{% endblock %}

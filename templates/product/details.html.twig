@@ -35,7 +35,8 @@
                     </select>
                 </div>
                 <div class="col-md-8">
-                    <button class="btn-custom-block">Ajouter au panier</button>
+                    <a href={{ path('app_cart_add', {'id': product.id}) }}><button class="btn-custom-block">Ajouter au panier</button></a>
+                    
                 </div>
             </div>
             <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
