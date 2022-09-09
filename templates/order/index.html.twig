@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block sectionTitle %} Ma commande {% endblock %}
+
+{% block btnBack %}{% endblock %}
+
+{% block section %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Order Details -->
+            <div id="order-details" class="p-5 mx-md-5 mb-3">
+                <div class="text-center mb-4">
+                    <h4>Recapitulatif de la commande</h4>
+                </div>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col">ARTICLES COMMANDES</th>
+                        <th scope="col" class="text-end">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set totalAmount = 0 %}
+                        {% for item in cart %}
+                        <tr>
+                            <td>{{ item.qte }}x {{ item.product.name }}</td>
+                            <td class="text-end">{{ (((item.product.price) * (item.qte)) /100) | number_format(2, ',', '.') }} €</td>
+                        </tr>
+                        {% set totalAmount = totalAmount + ((item.product.price) * (item.qte)) %}
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                        <th>SOUS-TOTAL</th>
+                        <th class="text-end">{{ (totalAmount /100) | number_format(2, ',', '.') }} €</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /Order Details -->  
+        </div>
+        <div class="col-lg-4">
+            <div id="order-options" class="px-5 px-lg-0 mx-5 mx-lg-0 mb-3">
+                {% form_theme form 'bootstrap_5_layout.html.twig' %}
+                {{ form_start(form, {action: path('app_order_pay') } ) }}
+                    
+                    {{ form_row(form.carriers,
+                        { label: 'Choisir le transporteur' }) }}
+                    {% set formHtml %}
+                    {{ form_row(form.adresses, { label: 'Adresse de livraison' }) }}
+                    {% endset %}
+                    {{ formHtml|replace({';' : '</br>'})|raw }}
+                    <button type="submit" class="btn-custom-block mb-4">Continuer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -319,6 +319,24 @@ footer .copyright {
   text-decoration: none;
 }
 
+/* ORDER */
+#order-details {
+  border: 1px solid #E4E7ED;
+}
+
+#order-options .form-check{
+  display: flex;
+  align-items: center;
+  border: 1px solid #E4E7ED;
+  padding: 20px 40px;
+  margin-bottom: 10px;
+}
+#order-options .form-check input{
+  margin-right: 20px;
+}
+
+
+
 
 
 

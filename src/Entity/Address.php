@@ -41,6 +41,11 @@ class Address
     #[ORM\Column]
     private ?bool $available = null;
 
+    public function __toString()
+    {
+        return $this->getReceiver() . '; ' .$this->getStreet() . '; ' .$this->getCp() . ' ' .$this->getCity();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
