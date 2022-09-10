@@ -50,6 +50,31 @@ class Order
         $this->orderDetails = new ArrayCollection();
     }
 
+    //liste ul des pdts commandés avec qté et prix
+    public function getListArticles() {
+        $list = '<ul>';
+        foreach ($this->getOrderDetails() as $lcmd) {
+            $list .= '<li>' . $lcmd->getProductName() . ' - x' . $lcmd->getQuantity() . ' - ' . number_format(($lcmd->getTotal() /100), 2, ',') .' €</li>';      
+        }
+        $list .= '</ul>';
+        return $list;
+    }
+
+    //total cmd formaté
+    public function getTotalFormat() {
+        $totalOrder = 0;
+        foreach ($this->getOrderDetails() as $lcmd) {
+            $totalOrder += $lcmd->getTotal();
+        }
+        $totalOrder += ($this->getCarrierPrice()*100);
+        return $totalOrder;   
+    }
+
+    //prix formaté
+    public function getCarrierPriceFormat() {
+        return ($this->carrierPrice)*100;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
