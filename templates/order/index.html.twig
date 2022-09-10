@@ -47,10 +47,10 @@
                 {% form_theme form 'bootstrap_5_layout.html.twig' %}
                 {{ form_start(form, {action: path('app_order_pay') } ) }}
                     
-                    {{ form_row(form.carriers,
+                    {{ form_row(form.carrier,
                         { label: 'Choisir le transporteur' }) }}
                     {% set formHtml %}
-                    {{ form_row(form.adresses, { label: 'Adresse de livraison' }) }}
+                    {{ form_row(form.address, { label: 'Adresse de livraison' }) }}
                     {% endset %}
                     {{ formHtml|replace({';' : '</br>'})|raw }}
                     <button type="submit" class="btn-custom-block mb-4">Continuer</button>

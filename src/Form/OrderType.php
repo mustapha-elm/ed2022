@@ -16,7 +16,7 @@ class OrderType extends AbstractType
         $user = $options['user'];
 
         $builder
-        ->add('adresses', EntityType::class, [
+        ->add('address', EntityType::class, [
             'class' => Address::class,
             'multiple' => false,
             'required' => true,
@@ -24,7 +24,7 @@ class OrderType extends AbstractType
             'expanded' => true
 
         ])
-        ->add('carriers', EntityType::class, [
+        ->add('carrier', EntityType::class, [
             'class' => Carrier::class,
             'multiple' => false,
             'required' => true,

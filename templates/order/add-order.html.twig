@@ -8,6 +8,76 @@
 
 {% block section %}
 <div class="container py-4">
-   paiement de la commande
+
+
+   <div id="order-pay">
+      <h5 class="text-center mb-4 fw-bolder">VOTRE COMMANDE</h5>
+      
+
+      <table class="table table-borderless">
+         <thead>
+            <tr>
+               <th scope="col">Articles</th>
+               <th scope="col" class="text-center">Quantité</th>
+               <th scope="col" class="text-end">Total</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% set totalAmount = 0 %}
+            {% for item in cart %}
+            <tr>
+               <td>{{ item.product.name }}</td>
+               <td class="text-center">x {{ item.qte }}</td>
+               <td class="text-end">{{ ((item.product.price) /100) | number_format(2, ',', '.') }} €</td>
+            </tr>
+            {% set totalAmount = totalAmount + ((item.product.price) * (item.qte)) %}
+            {% endfor %}
+         </tbody>
+      </table>
+      <hr>
+      <table class="table table-borderless">
+         <thead>
+            <tr>
+               <th scope="col" colspan="2">Livraison</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>{{ carrier.name }}</td>
+               <td class="text-end">{{ carrier.price | number_format(2, ',', '.') }} €</td>
+            </tr>
+         </tbody>
+      </table>
+      <hr>
+      <table class="table table-borderless">
+         <thead>
+            <tr>
+               <th scope="col">TOTAL</th>
+               <th scope="col" class="text-end">{{ ((totalAmount /100) +  (carrier.price)) | number_format(2, ',', '.') }} €</th>
+            </tr>
+         </thead>
+      </table>
+      <hr>
+      <div>
+         <p><em><strong>Adresse de livraison  </strong> <br>{{ delivery }}</em></p>
+      </div>
+      <hr>
+      <form action={{ path('app_stripe') }} method="POST">
+         <div class="d-flex">
+            <input type="checkbox" id="terms" class="me-3" checked required>
+            <label for="terms">
+                  <span></span>
+                  <small>En passant votre commande, vous acceptez les Conditions générales de vente de notre site. Veuillez consulter notre <a href="#">Notice protection des données personnelles</a> et notre <a href="#">Notice cookies</a>.</small>
+            </label>
+         </div>
+         <input type="hidden" name="reference" value={{reference}}>
+         <button type="submit" id="checkout-button" class="btn-custom-block m-3 fs-6 fw-bolder">PAYER | {{ ((totalAmount /100) +  (carrier.price)) | number_format(2, ',', '.') }} €</button>
+      </form>
+
+
+   
+   </div>
+
+
 </div>
 {% endblock %}

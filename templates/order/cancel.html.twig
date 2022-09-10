@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Echec commande{% endblock %}
+
+
+{% block sectionTitle %} Echec commande {% endblock %}
+
+{% block section %}
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <h2>Erreur lors du paiement de la commande n° {{ order.reference }}.</h2>
+        <div>
+            <a href={{ path('app_cart') }}>Retour au panier</a>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- / SECTION -->
+{% endblock %}

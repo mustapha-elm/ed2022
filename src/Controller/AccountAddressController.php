@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Form\AddressFormType;
+use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class AccountAddressController extends AbstractController
 
 
     #[Route('/mon-compte/nouvelle-adresse', name: 'app_add_address')]
-    public function add(Request $request): Response
+    public function add(Request $request, CartService $cartService): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -50,6 +51,10 @@ class AccountAddressController extends AbstractController
             
             $this->em->persist($address);
             $this->em->flush();
+
+            if ($cartService->getCart()) {
+               return $this->redirectToRoute('app_order');
+            }
 
             return $this->redirectToRoute('app_account_address');
         }
