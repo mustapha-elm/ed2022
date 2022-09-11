@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block section %}
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <div id="my-order">
+            <a href={{ path('app_account_my_orders') }}>retour</a>
+            <h2>Ma commande {{ order.reference}}</h2>
+            <p>
+                <strong>Commande effectuée le :</strong> {{ order.createdAt|date("d/m/Y") }} <br>
+                <strong>Livrée par</strong> : {{ order.carrierName }}  
+            </p>
+          
+            <div id="account-resume-order" class="mb-3">
+                <h4>RESUME</h4>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                            <th scope="row">Articles</th>
+                            <td class="text-end">{{ (order.getSousTotal / 100) | number_format(2, ',', '.') }} €</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Livraison</th>
+                            <td  class="text-end">{{ order.carrierPrice | number_format(2, ',', '.') }} €</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Total</th>
+                            <td  class="text-end"><strong>{{ (order.getTotalFormat / 100) | number_format(2, ',', '.') }} €</strong> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+
+            <div id="account-details-order">
+                <h4>DETAILS</h4>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col">Articles</th>
+                        <th scope="col" class="text-center">Quantité</th>
+                        <th scope="col" class="text-end">Prix unitaire</th>
+                        <th scope="col" class="text-end">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in orderDetails %}
+                        <tr>
+                        <td>{{ item.productName }}</th>
+                        <td class="text-center">{{ item.quantity }}</td>
+                        <td class="text-end">{{ (item.price / 100) | number_format(2, ',', '.') }} €</td>
+                        <td class="text-end">{{ ((item.price * item.quantity) / 100) | number_format(2, ',', '.') }} €</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+           
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- / SECTION -->
+{% endblock %}

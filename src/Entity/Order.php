@@ -70,10 +70,20 @@ class Order
         return $totalOrder;   
     }
 
+     //total de la commande sans frais de livraison
+     public function getSousTotal() {
+        $totalOrder = 0;
+        foreach ($this->getOrderDetails() as $lcmd) {
+            $totalOrder += $lcmd->getTotal();
+        }
+        return $totalOrder;   
+    }
+
     //prix formaté
     public function getCarrierPriceFormat() {
         return ($this->carrierPrice)*100;
     }
+
 
     public function getId(): ?int
     {

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ElectroDeals - Mes commandes{% endblock %}
+
+{% block section %}
+    <!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+                <h2>Mes commandes</h2>
+                {% if orders %}
+                 <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">Reference</th>
+                        <th scope="col">Passée le</th>
+                        <th scope="col">Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <th><span class="badge text-bg-secondary">{{ order.reference }}</span></th>
+                            <td>{{ order.createdAt|date("m/d/Y") }}</td>
+                            <td>{{ (order.getTotalFormat / 100) | number_format(2, ',', '.') }} €</td>
+                            <td><a href={{ path('app_account_my_order', {'reference': order.reference}) }} title="Détails de la commande" class="text-warning stretched-link">voir la commande</a></td>
+                        </tr> 
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div>
+                    <p>Vous n'avez encore passé de commande sur <a href={{ path('app_product') }}>ElectroDeals.tech</a> </p>
+                </div> 
+                {% endif %}
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- / SECTION -->
+{% endblock %}

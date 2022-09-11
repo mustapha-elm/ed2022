@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Form\ChangePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AccountController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     #[Route('/mon-compte', name: 'app_account')]
     public function index(): Response
     {
@@ -59,6 +67,33 @@ class AccountController extends AbstractController
         return $this->render('account/change-password.html.twig', [
             'changePasswordForm' => $form->createView(),
             'alert' => $alert
+        ]);
+    }
+
+
+    //AFFICHER MES COMMANDES
+    #[Route('/compte/mes-commandes', name: 'app_account_my_orders')]
+    public function showOrders(): Response
+    {
+        $orders = $this->em->getRepository(Order::class)->findBy(['paid' => 1, 'user' => $this->getUser()]);
+        
+        return $this->render('account/my-orders.html.twig', [
+            'orders' => $orders
+        ]);
+    }
+
+
+    //AFFICHER LES DETAILS D'UNE COMMANDE
+    #[Route('/compte/mes-commandes/{reference}', name: 'app_account_my_order')]
+    public function showOrder($reference): Response
+    {
+        $order = $this->em->getRepository(Order::class)->findOneBy(['reference' => $reference]);
+        $orderDetails = $order->getOrderDetails()->getValues();
+        
+        
+        return $this->render('account/my-order.html.twig', [
+            'order' => $order,
+            'orderDetails' => $orderDetails
         ]);
     }
 }

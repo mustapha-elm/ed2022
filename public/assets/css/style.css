@@ -354,6 +354,17 @@ footer .copyright {
 }
 
 
+/* ACCOUNT ORDER DETAILS */
+#account-resume-order {
+  max-width: 500px;
+  padding: 20px;
+}
+#account-details-order {
+  max-width: 1200px;
+  padding: 20px;
+}
+
+
 
 
 
