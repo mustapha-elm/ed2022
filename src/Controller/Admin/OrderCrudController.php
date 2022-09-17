@@ -38,7 +38,7 @@ class OrderCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            TextField::new('reference')->setLabel('Reference')->onlyOnDetail(),  
+            TextField::new('reference')->setLabel('Reference'),  
             TextField::new('user.getLastname')->setLabel('Client - Nom'),  
             TextField::new('user.getFirstName')->setLabel('Prénom'),  
             EmailField::new('user.getEmail')->setLabel('Email'),  

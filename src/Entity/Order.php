@@ -50,6 +50,12 @@ class Order
         $this->orderDetails = new ArrayCollection();
     }
 
+    //retour d'un string de l objet, avec reference et montant total
+    public function __toString()
+    {
+        return 'n° ' . $this->getReference() . ' - ' . $this->getTotalOrder() . ' €';
+    }
+
     //liste ul des pdts commandés avec qté et prix
     public function getListArticles() {
         $list = '<ul>';
@@ -68,6 +74,16 @@ class Order
         }
         $totalOrder += ($this->getCarrierPrice()*100);
         return $totalOrder;   
+    }
+
+    //total cmd formaté
+    public function getTotalOrder() {
+        $totalOrder = 0;
+        foreach ($this->getOrderDetails() as $lcmd) {
+            $totalOrder += $lcmd->getTotal();
+        }
+        $totalOrder += ($this->getCarrierPrice()*100);
+        return $totalOrder/100;   
     }
 
      //total de la commande sans frais de livraison

@@ -17,6 +17,9 @@ body {
 .bg-my-dark-light {
   background-color: #1E1F29 !important;
 }
+.text-my-yellow {
+  color: #ffbd4a !important;
+}
 .input-custom-l {
   border-radius: 40px 0px 0px 40px !important;
 }
@@ -238,6 +241,13 @@ footer .copyright {
   padding: 20px;
   border-top: 1px solid #15161D;
   border-bottom: 1px solid #15161D;
+}
+
+
+/* HOME */
+#home {
+ /* background-color: #b0c1f9; */
+  padding: 20px 0;
 }
 
 /*  PRODUCTS */

@@ -8,11 +8,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -38,7 +39,10 @@ class ProductCrudController extends AbstractCrudController
             MoneyField::new('price')->setCurrency('EUR')->setLabel('Prix'),
             AssociationField::new('category')->setLabel('Catégories'),
             BooleanField::new('best')->setLabel('Top Produit ?'),
-            IntegerField::new('statement')->setLabel('Etat'),
+            ChoiceField::new('statement')->setLabel('Etat')->setChoices([
+                'neuf' => 1,
+                'occasion' => 2
+            ]),
         ];
     }
     
