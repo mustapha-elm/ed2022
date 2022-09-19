@@ -102,16 +102,6 @@
     </div>
 
   
-    <div class="section-header">
-        <!-- container -->
-        <div class="container">
-            <h2 class="h5 ms-md-5 mt-4">
-              {% if block('btnBack') is defined %}<a href={{app.request.headers.get('referer')}} class="link-custom me-5 fs-6">retour</a>{% endif %}
-              {% block sectionTitle %}Bienvenue chez ElectroDeals{% endblock %}
-            </h2>
-        </div>
-        <!-- /container -->
-    </div>
 
 
 
@@ -169,6 +159,7 @@
     <script src={{ asset('assets/node_modules/@popperjs/core/dist/umd/popper.min.js') }}></script>
     <script src={{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}></script>
     <script src={{ asset('assets/js/script.js') }}></script>
+    {% block javascripts %}{% endblock %}
 </body>
 
 </html>

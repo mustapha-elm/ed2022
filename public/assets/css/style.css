@@ -245,9 +245,30 @@ footer .copyright {
 
 
 /* HOME */
-#home {
- /* background-color: #b0c1f9; */
-  padding: 20px 0;
+
+
+#countdown-card ul li div {
+  background-color: #ffbd4a;
+  margin: 0 5px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#countdown-card ul li div h4 {
+  font-weight: 900;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+
+#countdown-card ul li div span {
+  margin-top: 0;
+  padding-top: 0;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 400;
 }
 
 /*  PRODUCTS */
@@ -373,6 +394,8 @@ footer .copyright {
   max-width: 1200px;
   padding: 20px;
 }
+
+
 
 
 

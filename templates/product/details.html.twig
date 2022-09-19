@@ -4,8 +4,6 @@
     Détails du produit
 {% endblock %}
 
-{% block sectionTitle %} {{ product.name }} {% endblock %}
-
 {% block btnBack %}{% endblock %}
 
 {% block section %}
@@ -25,19 +23,8 @@
             <div>
                 <h4> {{  product.subtitle }} </h4>
             </div>
-            <div class="row mt-5 align-items-center">
-                <div class="col-md-4 col-lg-3">
-                    <select class="form-select form-select-sm text-center" aria-label=".form-select-sm example">
-                        <option selected>Qte</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">2</option>
-                    </select>
-                </div>
-                <div class="col-md-8">
+            <div class="mt-5">
                     <a href={{ path('app_cart_add', {'id': product.id}) }}><button class="btn-custom-block">Ajouter au panier</button></a>
-                    
-                </div>
             </div>
             <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
                 <div class="accordion-item">
